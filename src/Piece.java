@@ -1,18 +1,34 @@
-public class Piece {
-    private boolean white;
-    private final char symbol;
-    protected int[] position;
+public abstract class Piece {
+    private static final Character[] LETTERS = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
 
-    public Piece(char symbol, boolean white, int[] pos) {
+    private final boolean white;
+    private final char symbol;
+    protected Position position;
+
+    public Piece(char symbol, boolean white, Position pos) {
         this.symbol = symbol;
         this.white = white;
-        this.position = pos.clone();
+        this.position = pos;
+    }
+
+    public abstract boolean move(int x, int y);
+
+    public static Piece getPiece(char symbol, boolean white, Position position) {
+        if (symbol == 'K')
+            return new King(white, position);
+        else if (symbol == 'N')
+            return new Knight(white, position);
+
+        return null;
     }
 
     public String toString() {
+        String output = "";
         if (symbol != ' ')
-            return Character.toString(symbol);
-        else
-            return "p";
+            output += Character.toString(symbol);
+
+        output += LETTERS[position.x] + (LETTERS.length - position.y);
+
+        return output;
     }
 }

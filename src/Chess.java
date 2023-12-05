@@ -12,24 +12,24 @@ public class Chess {
         // Make black and white back rows and pawns
         for (int i = 1; i < SIZE+1; i++) {
             // Add back rows
-            board.add(new Piece(
+            board.add(Piece.getPiece(
                     STARTING_BACK_ROW[i],
                     false,
-                    new int[]{i, 1}));
-            board.add(new Piece(
+                    new Position(i, 1)));
+            board.add(Piece.getPiece(
                     STARTING_BACK_ROW[i],
                     true,
-                    new int[]{i, SIZE}));
+                    new Position(i, SIZE)));
 
             // Add pawns
-            board.add(new Piece(
+            board.add(Piece.getPiece(
                     ' ',
                     false,
-                    new int[]{i, 1}));
-            board.add(new Piece(
+                    new Position(i, 1)));
+            board.add(Piece.getPiece(
                     ' ',
                     true,
-                    new int[]{i, SIZE-1}));
+                    new Position(i, SIZE-1)));
         }
     }
 
