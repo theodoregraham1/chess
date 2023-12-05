@@ -1,22 +1,45 @@
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class Chess {
-    private static final String[] STARTING_BACK_ROW = {"Rook", "Knight", "Bishop", "Queen", "King", "Bishop", "Knight", "Rook"};
+    private static final int SIZE = 8;
+    private static final char[] STARTING_BACK_ROW = {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'};
 
-    private Piece[][] board;
+    private ArrayList<Piece> board;
 
     public Chess() {
-        board = new Piece[8][8];
+        board = new ArrayList<>();
 
         // Make black and white back rows and pawns
-        for (int i = 0; i < board.length; i++) {
-            board[0][i] = new Piece(STARTING_BACK_ROW[i], false);
-            board[board.length - 1][i] = new Piece(STARTING_BACK_ROW[i], true);
+        for (int i = 1; i < SIZE+1; i++) {
+            // Add back rows
+            board.add(new Piece(
+                    STARTING_BACK_ROW[i],
+                    false,
+                    new int[]{i, 1}));
+            board.add(new Piece(
+                    STARTING_BACK_ROW[i],
+                    true,
+                    new int[]{i, SIZE}));
 
-            board[1][i] = new Piece("Pawn", false);
-            board[board.length - 2][i] = new Piece("Pawn", true);
+            // Add pawns
+            board.add(new Piece(
+                    ' ',
+                    false,
+                    new int[]{i, 1}));
+            board.add(new Piece(
+                    ' ',
+                    true,
+                    new int[]{i, SIZE-1}));
         }
+    }
 
-        System.out.println(Arrays.deepToString(board));
+    public void display() {
+        for (Piece p: board) {
+            if (p != null)
+                System.out.print(p + " ");
+            else
+                System.out.print("_ ");
+        }
+        System.out.println();
     }
 }

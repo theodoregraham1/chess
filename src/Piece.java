@@ -1,13 +1,18 @@
 public class Piece {
-    boolean white;
-    String name;
+    private boolean white;
+    private final char symbol;
+    protected int[] position;
 
-    public Piece(String name, boolean white) {
-        this.name = name;
+    public Piece(char symbol, boolean white, int[] pos) {
+        this.symbol = symbol;
         this.white = white;
+        this.position = pos.clone();
     }
 
     public String toString() {
-        return name;
+        if (symbol != ' ')
+            return Character.toString(symbol);
+        else
+            return "p";
     }
 }
