@@ -3,7 +3,7 @@ public class Knight extends Piece {
         super('N', white, pos);
     }
 
-    public boolean move(int x, int y) {
+    public boolean move(int dx, int dy) {
         return false;
     }
 }

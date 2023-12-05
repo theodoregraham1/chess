@@ -11,13 +11,14 @@ public abstract class Piece {
         this.position = pos;
     }
 
-    public abstract boolean move(int x, int y);
+    public abstract boolean move(int dx, int dy);
 
     public static Piece getPiece(char symbol, boolean white, Position position) {
         if (symbol == 'K')
             return new King(white, position);
         else if (symbol == 'N')
             return new Knight(white, position);
+        else if (symbol == 'B')
 
         return null;
     }

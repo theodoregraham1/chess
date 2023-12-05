@@ -3,20 +3,21 @@ public class King extends Piece {
         super('K', white, position);
     }
 
-    public boolean move(int x, int y) {
-        if ((x == 0) && (y == 0))
-            return false;
+    public boolean move(int dx, int dy) {
+        if (((dx == 0) && (dy == 0) || position.isValid(dx, dy))) {
+            if (dx < 0)
+                position.x--;
+            else if (dx > 0)
+                position.x++;
 
-        if (x < 0)
-            position.x--;
-        else if (x > 0)
-            position.x++;
+            if (dy < 0)
+                position.y--;
+            else if (dy > 0)
+                position.y++;
 
-        if (y < 0)
-            position.y--;
-        else if (y > 0)
-            position.y++;
+            return true;
+        }
 
-        return true;
+        return false;
     }
 }
