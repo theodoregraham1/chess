@@ -20,6 +20,9 @@ public abstract class Piece {
             return new Knight(white, position);
         else if (symbol == 'B')
             return new Bishop(white, position);
+        else if (symbol == 'Q')
+            return new Queen(white, position);
+
         return null;
     }
 

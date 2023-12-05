@@ -5,7 +5,8 @@ public class King extends Piece {
 
     // Move King and return whether move is valid
     public boolean move(int dx, int dy) {
-        if (((dx == 0) && (dy == 0) || !(position.isValid(dx, dy))))
+        if (((dx == 0) && (dy == 0)
+                || !(position.isValid(dx, dy))))
             return false;
 
         if (dx < 0)
