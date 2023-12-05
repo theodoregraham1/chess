@@ -3,21 +3,21 @@ public class King extends Piece {
         super('K', white, position);
     }
 
+    // Move King and return whether move is valid
     public boolean move(int dx, int dy) {
-        if (((dx == 0) && (dy == 0) || position.isValid(dx, dy))) {
-            if (dx < 0)
-                position.x--;
-            else if (dx > 0)
-                position.x++;
+        if (((dx == 0) && (dy == 0) || !(position.isValid(dx, dy))))
+            return false;
 
-            if (dy < 0)
-                position.y--;
-            else if (dy > 0)
-                position.y++;
+        if (dx < 0)
+            position.x--;
+        else if (dx > 0)
+            position.x++;
 
-            return true;
-        }
+        if (dy < 0)
+            position.y--;
+        else if (dy > 0)
+            position.y++;
 
-        return false;
+        return true;
     }
 }

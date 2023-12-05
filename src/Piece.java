@@ -19,7 +19,7 @@ public abstract class Piece {
         else if (symbol == 'N')
             return new Knight(white, position);
         else if (symbol == 'B')
-
+            ;
         return null;
     }
 
