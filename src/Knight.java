@@ -5,7 +5,12 @@ public class Knight extends Piece {
 
     // Move Knight and return whether move is valid
     public boolean move(int dx, int dy) {
-        // TODO
-        return false;
+        if ((Math.abs(dx) + Math.abs(dy)) != 3)
+            return false;
+
+        position.x += dx;
+        position.y += dy;
+
+        return true;
     }
 }
