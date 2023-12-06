@@ -1,7 +1,7 @@
 public abstract class Piece {
     private static final Character[] LETTERS = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
 
-    private final boolean white;
+    protected final boolean white;
     private final char symbol;
     protected Position position;
 
