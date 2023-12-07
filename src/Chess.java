@@ -4,7 +4,7 @@ public class Chess {
     private static final int SIZE = 8;
     private static final char[] STARTING_BACK_ROW = {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'};
 
-    private ArrayList<String> moves;
+    private ArrayList<Move> moves;
     private ArrayList<Piece> board;
 
     public Chess() {
@@ -55,7 +55,7 @@ public class Chess {
         if (pieceToMove == null) {
             return false;
         }
-        return move(pieceToMove, newPosition.x - currentPosition.x, newPosition.y - currentPosition.y)
+        return move(pieceToMove, newPosition.x - currentPosition.x, newPosition.y - currentPosition.y);
     }
 
     public boolean move(Piece piece, int dx, int dy) {
@@ -71,7 +71,12 @@ public class Chess {
         if (!(legal))
             return false;
 
-        return piece.move(dx, dy);
+        String oldPos = piece.getChessPosition();
+        legal = piece.move(dx, dy);
+        if (legal)
+            moves.add(new Move(piece, oldPos, piece.getChessPosition()));
+
+        return legal;
     }
 
     public String toString() {
