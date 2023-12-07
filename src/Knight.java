@@ -8,9 +8,6 @@ public class Knight extends Piece {
         if ((Math.abs(dx) + Math.abs(dy)) != 3)
             return false;
 
-        position.x += dx;
-        position.y += dy;
-
-        return true;
+        return super.move(dx, dy);
     }
 }

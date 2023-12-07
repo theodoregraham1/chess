@@ -11,7 +11,15 @@ public abstract class Piece {
         this.position = pos;
     }
 
-    public abstract boolean move(int dx, int dy);
+    public boolean move(int dx, int dy) {
+        if (!(position.isValid(dx, dy))
+            || ((dx == 0) && (dy == 0)))
+            return false;
+
+        position.x += dx;
+        position.y += dy;
+        return true;
+    }
 
     public static Piece getPiece(char symbol, boolean white, Position position) {
         if (symbol == 'K')

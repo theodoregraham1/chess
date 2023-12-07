@@ -5,14 +5,9 @@ public class Bishop extends Piece {
 
     // Move Bishop and return whether move is valid
     public boolean move(int dx, int dy) {
-        if (((dy != dx)
-                || (dx == 0)
-                || !(position.isValid(dx, dy))))
+        if ((dy != dx) || (dx == 0))
             return false;
 
-        position.x += dx;
-        position.y += dy;
-
-        return true;
+        return super.move(dx, dy);
     }
 }

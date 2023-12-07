@@ -5,14 +5,10 @@ public class Pawn extends Piece {
 
     // Make the pawn move and check it's valid
     public boolean move(int dx, int dy) {
-        if ((dx != 0)
-                || (dy != 1)
-                || !(position.isValid(dx, dy)))
+        if ((dx != 0) || (dy != 1))
             return false;
 
-        position.y += dy;
-
-        return true;
+        return super.move(dx, dy);
     }
 
     // Make the pawn move on a take and check it's valid
@@ -22,9 +18,6 @@ public class Pawn extends Piece {
             && !((position.y == 3) && !(white) && (dx == 0))) // En passant for black
             return false;
 
-        position.x += dx;
-        position.y += dy;
-
-        return true;
+        return super.move(dx, dy);
     }
 }
