@@ -22,6 +22,8 @@ public abstract class Piece {
             return new Bishop(white, position);
         else if (symbol == 'Q')
             return new Queen(white, position);
+        else if (symbol == ' ')
+            return new Pawn(white, position);
 
         return null;
     }
@@ -34,5 +36,13 @@ public abstract class Piece {
         output += LETTERS[position.x] + (LETTERS.length - position.y);
 
         return output;
+    }
+
+    public char getSymbol() {
+        return symbol;
+    }
+
+    public Position getPosition() {
+        return this.position;
     }
 }

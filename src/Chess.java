@@ -13,11 +13,11 @@ public class Chess {
         for (int i = 1; i < SIZE+1; i++) {
             // Add back rows
             board.add(Piece.getPiece(
-                    STARTING_BACK_ROW[i],
+                    STARTING_BACK_ROW[i-1],
                     false,
                     new Position(i, 1)));
             board.add(Piece.getPiece(
-                    STARTING_BACK_ROW[i],
+                    STARTING_BACK_ROW[i-1],
                     true,
                     new Position(i, SIZE)));
 
@@ -33,13 +33,22 @@ public class Chess {
         }
     }
 
-    public void display() {
-        for (Piece p: board) {
-            if (p != null)
-                System.out.print(p + " ");
-            else
-                System.out.print("_ ");
+    public String toString() {
+        String[][] boardArray = new String[SIZE][SIZE];
+
+        for (Piece piece: board) {
+            Position pos = piece.getPosition();
+
+            boardArray[pos.y][pos.x] = Character.toString(piece.getSymbol());
         }
-        System.out.println();
+
+        StringBuilder output = new StringBuilder();
+        for (String[] row: boardArray) {
+            for (String space: row) {
+                output.append(space + " ");
+            }
+        }
+
+        return output.toString();
     }
 }
