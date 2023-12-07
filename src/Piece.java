@@ -28,6 +28,8 @@ public abstract class Piece {
             return new Knight(white, position);
         else if (symbol == 'B')
             return new Bishop(white, position);
+        else if (symbol == 'R')
+            return new Rook(white, position);
         else if (symbol == 'Q')
             return new Queen(white, position);
         else if (symbol == ' ')
@@ -41,7 +43,7 @@ public abstract class Piece {
         if (symbol != ' ')
             output += Character.toString(symbol);
 
-        output += LETTERS[position.x] + (LETTERS.length - position.y);
+        output += this.chessPosition();
 
         return output;
     }
@@ -52,5 +54,9 @@ public abstract class Piece {
 
     public Position getPosition() {
         return this.position;
+    }
+
+    public String chessPosition() {
+        return LETTERS[position.x-1] + Integer.toString(LETTERS.length - position.y+1);
     }
 }

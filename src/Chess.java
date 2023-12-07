@@ -4,9 +4,11 @@ public class Chess {
     private static final int SIZE = 8;
     private static final char[] STARTING_BACK_ROW = {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'};
 
+    private ArrayList<String> moves;
     private ArrayList<Piece> board;
 
     public Chess() {
+        moves = new ArrayList<>();
         board = new ArrayList<>();
 
         // Make black and white back rows and pawns
@@ -25,7 +27,7 @@ public class Chess {
             board.add(Piece.getPiece(
                     ' ',
                     false,
-                    new Position(i, 1)));
+                    new Position(i, 2)));
             board.add(Piece.getPiece(
                     ' ',
                     true,
@@ -33,20 +35,36 @@ public class Chess {
         }
     }
 
+    public boolean move(String currentPos) {
+        return false;
+    }
+
+    public boolean move(int index) {
+        return false;
+    }
+
     public String toString() {
+        System.out.println(board);
         String[][] boardArray = new String[SIZE][SIZE];
 
         for (Piece piece: board) {
             Position pos = piece.getPosition();
 
-            boardArray[pos.y][pos.x] = Character.toString(piece.getSymbol());
+            boardArray[pos.y-1][pos.x-1] = Character.toString(piece.getSymbol());
         }
 
         StringBuilder output = new StringBuilder();
         for (String[] row: boardArray) {
             for (String space: row) {
-                output.append(space + " ");
+                if (space == null)
+                    output.append("_");
+                else if (space.equals(" "))
+                    output.append("p");
+                else
+                    output.append(space);
+                output.append(" ");
             }
+            output.append("\n");
         }
 
         return output.toString();
