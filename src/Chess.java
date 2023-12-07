@@ -35,12 +35,43 @@ public class Chess {
         }
     }
 
-    public boolean move(String currentPos) {
-        return false;
+    public boolean move(String currentPos, String newPos) {
+        Position currentPosition = Piece.toIntPosition(currentPos),
+                newPosition = Piece.toIntPosition(newPos);
+        Piece pieceToMove = null;
+
+        // Ensure both positions are on the board
+        if (currentPosition == null || newPosition == null)
+            return false;
+
+        // Find the piece to move
+        for (Piece p: board) {
+            if (p.getIntPosition().equals(currentPosition)) {
+                pieceToMove = p;
+            }
+        }
+
+        // Ensure there is a piece at the position that is getting moved
+        if (pieceToMove == null) {
+            return false;
+        }
+        return move(pieceToMove, newPosition.x - currentPosition.x, newPosition.y - currentPosition.y)
     }
 
-    public boolean move(int index) {
-        return false;
+    public boolean move(Piece piece, int dx, int dy) {
+        Position newPosition = piece.getIntPosition().translate(dx, dy);
+
+        // Ensure there is not a piece in the way
+        boolean legal = true;
+        for (Piece p: board) {
+            if (p.getIntPosition().equals(newPosition)) {
+                legal = false;
+            }
+        }
+        if (!(legal))
+            return false;
+
+        return piece.move(dx, dy);
     }
 
     public String toString() {
@@ -48,7 +79,7 @@ public class Chess {
         String[][] boardArray = new String[SIZE][SIZE];
 
         for (Piece piece: board) {
-            Position pos = piece.getPosition();
+            Position pos = piece.getIntPosition();
 
             boardArray[pos.y-1][pos.x-1] = Character.toString(piece.getSymbol());
         }

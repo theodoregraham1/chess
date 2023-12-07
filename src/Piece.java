@@ -1,3 +1,5 @@
+import java.lang.reflect.Array;
+
 public abstract class Piece {
     private static final Character[] LETTERS = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
 
@@ -43,7 +45,7 @@ public abstract class Piece {
         if (symbol != ' ')
             output += Character.toString(symbol);
 
-        output += this.chessPosition();
+        output += this.getChessPosition();
 
         return output;
     }
@@ -52,11 +54,43 @@ public abstract class Piece {
         return symbol;
     }
 
-    public Position getPosition() {
+    public Position getIntPosition() {
         return this.position;
     }
 
-    public String chessPosition() {
+    public static Position toIntPosition(String chessPosition) {
+        char[] characters = chessPosition.toCharArray();
+        Position position;
+        char x, y;
+
+        if (characters.length == 2) {
+            x = characters[0];
+            y = characters[1];
+        } else if (characters.length == 3) {
+            x = characters[1];
+            y = characters[2];
+        } else {
+            return null;
+        }
+        position = new Position(
+                findInLetters(x)+1,
+                LETTERS.length - Integer.parseInt(Character.toString(y)) + 1);
+
+        if (position.isValid())
+            return position;
+        return null;
+    }
+
+    private static int findInLetters(char letter) {
+        int index = -1;
+        for (int i = 0; i < LETTERS.length; i++) {
+            if (letter == LETTERS[i])
+                index = i;
+        }
+
+        return index;
+    }
+    public String getChessPosition() {
         return LETTERS[position.x-1] + Integer.toString(LETTERS.length - position.y+1);
     }
 }
