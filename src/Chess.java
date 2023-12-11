@@ -80,20 +80,19 @@ public class Chess {
     }
 
     public String toString() {
-        System.out.println(board);
         String[][] boardArray = new String[SIZE][SIZE];
 
         for (Piece piece: board) {
             Position pos = piece.getIntPosition();
 
-            boardArray[pos.y-1][pos.x-1] = Character.toString(piece.getSymbol());
+            boardArray[pos.y-1][pos.x-1] = Character.toString(piece.getSide()) + piece.getSymbol();
         }
 
         StringBuilder output = new StringBuilder();
         for (String[] row: boardArray) {
             for (String space: row) {
                 if (space == null)
-                    output.append("_");
+                    output.append("__");
                 else if (space.equals(" "))
                     output.append("p");
                 else

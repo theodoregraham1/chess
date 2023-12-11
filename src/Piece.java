@@ -54,6 +54,10 @@ public abstract class Piece {
         return symbol;
     }
 
+    public char getSide() {
+        if (white) return 'w';
+        return 'b';
+    }
     public Position getIntPosition() {
         return this.position;
     }
