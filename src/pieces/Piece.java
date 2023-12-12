@@ -1,4 +1,6 @@
-import java.lang.reflect.Array;
+package pieces;
+
+import board.Position;
 
 public abstract class Piece {
     private static final Character[] LETTERS = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
@@ -21,6 +23,10 @@ public abstract class Piece {
         position.x += dx;
         position.y += dy;
         return true;
+    }
+
+    public boolean take(int dx, int dy) {
+        return move(dx, dy);
     }
 
     public static Piece getPiece(char symbol, boolean white, Position position) {

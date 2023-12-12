@@ -1,3 +1,7 @@
+package pieces;
+
+import board.Position;
+
 public class Rook extends Piece {
     public Rook(boolean white, Position position) {
         super('R', white, position);

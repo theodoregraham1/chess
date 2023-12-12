@@ -1,3 +1,7 @@
+package pieces;
+
+import board.Position;
+
 public class Bishop extends Piece {
     public Bishop(boolean white, Position pos) {
         super('B', white, pos);

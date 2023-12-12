@@ -1,3 +1,7 @@
+package board;
+
+import pieces.Piece;
+
 import java.util.ArrayList;
 
 public class Chess {

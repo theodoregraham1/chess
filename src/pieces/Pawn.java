@@ -1,3 +1,7 @@
+package pieces;
+
+import board.Position;
+
 public class Pawn extends Piece {
     public Pawn(boolean white, Position position) {
         super(' ', white, position);

@@ -1,3 +1,7 @@
+package board;
+
+import pieces.Piece;
+
 public class Move {
     private String oldPosition;
     private String newPosition;
