@@ -9,8 +9,7 @@ public class Pawn extends Piece {
 
     // Make the pawn move and check it's valid
     public boolean move(int dx, int dy) {
-        if ((dx != 0) || (dy != 1))
-            return false;
+        if (!(isValidMove(dx, dy))) return false;
 
         return super.move(dx, dy);
     }
@@ -23,5 +22,20 @@ public class Pawn extends Piece {
             return false;
 
         return super.move(dx, dy);
+    }
+
+    @Override
+    public Position[] intermediatesForMove(int dx, int dy) {
+        if (!(isValidMove(dx, dy))) return null;
+
+        return new Position[0];
+    }
+
+    @Override
+    public boolean isValidMove(int dx, int dy) {
+        if ((dx != 0) || (dy != 1))
+            return false;
+
+        return super.isValidMove(dx, dy);
     }
 }

@@ -87,6 +87,11 @@ public class Chess {
         return legal;
     }
 
+    public boolean isValidMove(Piece pieceToMove, int dx, int dy) {
+        // TODO
+        return false;
+    }
+
     public String toString() {
         String[][] boardArray = new String[SIZE][SIZE];
 

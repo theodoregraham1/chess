@@ -16,8 +16,7 @@ public abstract class Piece {
     }
 
     public boolean move(int dx, int dy) {
-        if (!(position.isValid(dx, dy))
-            || ((dx == 0) && (dy == 0)))
+        if (!(isValidMove(dx, dy)))
             return false;
 
         position.x += dx;
@@ -28,6 +27,12 @@ public abstract class Piece {
 
     public boolean take(int dx, int dy) {
         return move(dx, dy);
+    }
+    public abstract Position[] intermediatesForMove(int dx, int dy);
+
+    public boolean isValidMove(int dx, int dy) {
+        return position.isValid(dx, dy)
+                    || ((dx == 0) && (dy == 0));
     }
 
     public static Piece getPiece(char symbol, boolean white, Position position) {

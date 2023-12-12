@@ -17,7 +17,6 @@ public class Move {
 
     public String toString() {
         // Returns the move in Long Algebraic Notation
-
         String output = "";
 
         if (piece.getSymbol() != ' ')
