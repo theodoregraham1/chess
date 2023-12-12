@@ -5,17 +5,34 @@ import pieces.Piece;
 public class Move {
     private String oldPosition;
     private String newPosition;
+    private boolean take;
     private Piece piece;
 
-    public Move(Piece piece, String oldPos, String newPos) {
+    public Move(Piece piece, String oldPos, boolean take) {
         this.piece = piece;
         this.oldPosition = oldPos;
-        this.newPosition = newPos;
+        this.newPosition = piece.getChessPosition();
+        this.take = take;
     }
 
     public String toString() {
-        // TODO: Make this print better
-        return piece.getClass().toString() + " moved from " + oldPosition + " to " + newPosition;
+        // Returns the move in Long Algebraic Notation
+
+        String output = "";
+
+        if (piece.getSymbol() != ' ')
+            output += piece.getSymbol();
+
+        output += oldPosition;
+
+        if (take)
+            output += "x";
+        else
+            output += "-";
+
+        output += newPosition;
+
+        return output;
     }
 
     public String toChessNotation() {

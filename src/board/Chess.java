@@ -53,7 +53,6 @@ public class Chess {
         for (Piece p: board) {
             if (p.getIntPosition().equals(currentPosition)) {
                 pieceToMove = p;
-                System.out.println("Piece found");
             }
         }
 
@@ -83,7 +82,7 @@ public class Chess {
         String oldPos = piece.getChessPosition();
         legal = piece.move(dx, dy);
         if (legal)
-            moves.add(new Move(piece, oldPos, piece.getChessPosition()));
+            moves.add(new Move(piece, oldPos, false));
         System.out.println(moves.get(moves.size()-1));
         return legal;
     }
