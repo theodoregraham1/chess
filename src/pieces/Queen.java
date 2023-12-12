@@ -31,7 +31,7 @@ public class Queen extends Piece {
                 }
             } else {
                 for (int i = -1; i > dx; i--) {
-                    intermediates[i] = position.translate(i, i);
+                    intermediates[Math.abs(i)-1] = position.translate(i, i);
                 }
             }
 
@@ -46,7 +46,7 @@ public class Queen extends Piece {
                 }
             } else {
                 for (int i = -1; i > dy; i--) {
-                    intermediates[i] = position.translate(0, i);
+                    intermediates[Math.abs(i)-1] = position.translate(0, i);
                 }
             }
 
@@ -60,7 +60,7 @@ public class Queen extends Piece {
                 }
             } else {
                 for (int i = -1; i > dx; i--) {
-                    intermediates[i] = position.translate(i, 0);
+                    intermediates[Math.abs(i)-1] = position.translate(i, 0);
                 }
             }
         }

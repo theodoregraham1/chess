@@ -86,7 +86,7 @@ public class Chess {
             if (intermediates == null) {
                 legal = false;
                 System.out.println("ERROR: Move is invalid for the piece");
-            } else if (intermediates.length != 0) {
+            } else  {
                 // Check intermediate positions
                 for (Position pos : intermediates) {
                     for (Piece piece : board) {

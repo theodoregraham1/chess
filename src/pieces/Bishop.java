@@ -28,7 +28,7 @@ public class Bishop extends Piece {
             }
         } else {
             for (int i = -1; i > dx; i--) {
-                intermediates[i] = position.translate(i, i);
+                intermediates[Math.abs(i)-1] = position.translate(i, i);
             }
         }
 

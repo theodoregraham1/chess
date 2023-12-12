@@ -46,7 +46,7 @@ public class Rook extends Piece {
                 }
             } else {
                 for (int i = -1; i > dx; i--) {
-                    intermediates[i] = position.translate(i, 0);
+                    intermediates[Math.abs(i)-1] = position.translate(i, 0);
                 }
             }
         }
