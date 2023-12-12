@@ -66,16 +66,23 @@ public class Chess {
         return move(pieceToMove, newPosition.x - currentPosition.x, newPosition.y - currentPosition.y);
     }
 
-    public boolean move(Piece piece, int dx, int dy) {
+    private boolean move(Piece piece, int dx, int dy) {
         // Ensure there is not a piece in the way
         boolean legal = isValidMove(piece, dx, dy);
         if (!(legal)) return false;
 
         String oldPos = piece.getChessPosition();
-        legal = piece.move(dx, dy);
-        if (legal)
+
+        // Handle pawns
+        if (piece.getSymbol() == ' ' && Math.abs(dx) == 1)
+            legal = piece.take(dx, dy);
+        else
+            legal = piece.move(dx, dy);
+
+        if (legal) {
             moves.add(new Move(piece, oldPos, false));
-        System.out.println(moves.get(moves.size()-1));
+            System.out.println(moves.get(moves.size()-1));
+        }
         return legal;
     }
 

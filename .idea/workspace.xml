@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3041472c-8355-45ed-88c4-91af65e3a2f4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/src/board/Chess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/board/Chess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/Bishop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/Bishop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/Queen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/Rook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/Rook.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pieces/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/Pawn.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +131,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702388993990</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Ensure intermediates are created correctly">
+      <created>1702389136462</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1702389136462</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -161,6 +166,7 @@
     <MESSAGE value="Add toValidMoves" />
     <MESSAGE value="Finish isValidMove" />
     <MESSAGE value="Make it more robust and able to use with knights and etc." />
-    <option name="LAST_COMMIT_MESSAGE" value="Make it more robust and able to use with knights and etc." />
+    <MESSAGE value="Ensure intermediates are created correctly" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ensure intermediates are created correctly" />
   </component>
 </project>
