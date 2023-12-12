@@ -48,7 +48,7 @@ public class Chess {
         while (true) {
             String command = input.nextLine();
 
-
+            // TODO
         }
     }
 
