@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3041472c-8355-45ed-88c4-91af65e3a2f4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/src/board/Chess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/board/Chess.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/Pawn.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/Piece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +138,21 @@
       <option name="project" value="LOCAL" />
       <updated>1702389136462</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Fix taking with pawns">
+      <created>1702389968339</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1702389968339</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Fix taking with pawns in Chess">
+      <created>1702390140839</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1702390140839</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -167,6 +181,8 @@
     <MESSAGE value="Finish isValidMove" />
     <MESSAGE value="Make it more robust and able to use with knights and etc." />
     <MESSAGE value="Ensure intermediates are created correctly" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ensure intermediates are created correctly" />
+    <MESSAGE value="Fix taking with pawns" />
+    <MESSAGE value="Fix taking with pawns in Chess" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix taking with pawns in Chess" />
   </component>
 </project>

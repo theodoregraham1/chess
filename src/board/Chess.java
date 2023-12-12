@@ -4,6 +4,7 @@ import pieces.Pawn;
 import pieces.Piece;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Chess {
     private static final int SIZE = 8;
@@ -37,6 +38,17 @@ public class Chess {
                     ' ',
                     true,
                     new Position(i, SIZE-1)));
+        }
+    }
+
+    public static void main(String[] args) {
+        Chess chess = new Chess();
+        Scanner input = new Scanner(System.in);
+
+        while (true) {
+            String command = input.nextLine();
+
+
         }
     }
 

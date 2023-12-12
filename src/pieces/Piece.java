@@ -35,6 +35,30 @@ public abstract class Piece {
                     || ((dx == 0) && (dy == 0));
     }
 
+    public String toString() {
+        String output = "";
+        if (symbol != ' ')
+            output += Character.toString(symbol);
+
+        output += this.getChessPosition();
+
+        return output;
+    }
+
+    public char getSymbol() {
+        return symbol;
+    }
+    public char getSide() {
+        if (white) return 'w';
+        return 'b';
+    }
+    public Position getIntPosition() {
+        return this.position;
+    }
+    public String getChessPosition() {
+        return LETTERS[position.x-1] + Integer.toString(LETTERS.length - position.y+1);
+    }
+
     public static Piece getPiece(char symbol, boolean white, Position position) {
         if (symbol == 'K')
             return new King(white, position);
@@ -51,29 +75,6 @@ public abstract class Piece {
 
         return null;
     }
-
-    public String toString() {
-        String output = "";
-        if (symbol != ' ')
-            output += Character.toString(symbol);
-
-        output += this.getChessPosition();
-
-        return output;
-    }
-
-    public char getSymbol() {
-        return symbol;
-    }
-
-    public char getSide() {
-        if (white) return 'w';
-        return 'b';
-    }
-    public Position getIntPosition() {
-        return this.position;
-    }
-
     public static Position toIntPosition(String chessPosition) {
         char[] characters = chessPosition.toCharArray();
         Position position;
@@ -96,7 +97,6 @@ public abstract class Piece {
             return position;
         return null;
     }
-
     private static int findInLetters(char letter) {
         int index = -1;
         for (int i = 0; i < LETTERS.length; i++) {
@@ -105,8 +105,5 @@ public abstract class Piece {
         }
 
         return index;
-    }
-    public String getChessPosition() {
-        return LETTERS[position.x-1] + Integer.toString(LETTERS.length - position.y+1);
     }
 }
