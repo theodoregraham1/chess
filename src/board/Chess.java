@@ -8,8 +8,8 @@ public class Chess {
     private static final int SIZE = 8;
     private static final char[] STARTING_BACK_ROW = {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'};
 
-    private ArrayList<Move> moves;
-    private ArrayList<Piece> board;
+    private final ArrayList<Move> moves;
+    private final ArrayList<Piece> board;
 
     public Chess() {
         moves = new ArrayList<>();
@@ -65,8 +65,6 @@ public class Chess {
     }
 
     public boolean move(Piece piece, int dx, int dy) {
-        Position newPosition = piece.getIntPosition().translate(dx, dy);
-
         // Ensure there is not a piece in the way
         boolean legal = isValidMove(piece, dx, dy);
         if (!(legal)) return false;
@@ -80,19 +78,28 @@ public class Chess {
     }
 
     public boolean isValidMove(Piece pieceToMove, int dx, int dy) {
-        Position[] intermediates = pieceToMove.intermediatesForMove(dx, dy);
         boolean legal = true;
+        char symbol = pieceToMove.getSymbol();
+        if (symbol != 'N' && symbol != ' ' && symbol != 'K') {
+            Position[] intermediates = pieceToMove.intermediatesForMove(dx, dy);
 
-        if (intermediates == null ) legal = false;
-        else if (intermediates.length != 0) {
-            // Check intermediate positions
-            for (Position pos : intermediates) {
-                for (Piece piece : board) {
-                    if (piece.getIntPosition().equals(pos)) {
-                        legal = false;
+            if (intermediates == null) {
+                legal = false;
+                System.out.println("ERROR: Move is invalid for the piece");
+            } else if (intermediates.length != 0) {
+                // Check intermediate positions
+                for (Position pos : intermediates) {
+                    for (Piece piece : board) {
+                        if (piece.getIntPosition().equals(pos)) {
+                            legal = false;
+                            System.out.println("ERROR: There is a piece in the way");
+                        }
                     }
                 }
             }
+        } else {
+            legal = pieceToMove.isValidMove(dx, dy);
+            if (!(legal)) System.out.println("Move is illegal for the piece");
         }
 
         if (!(legal)) return false;
@@ -101,6 +108,7 @@ public class Chess {
         Position finalPos = pieceToMove.getIntPosition().translate(dx, dy);
         for (Piece piece: board) {
             if (piece.getIntPosition().equals(finalPos) && (piece.getSide() == pieceToMove.getSide())) {
+                System.out.println("ERROR: There is a piece in the way");
                 legal = false;
             }
         }

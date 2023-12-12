@@ -5,7 +5,7 @@ public class Main {
         Chess chess = new Chess();
         System.out.print(chess);
 
-        chess.move("a7", "a5");
+        chess.move("b8", "c6");
         System.out.println(chess);
     }
 }
