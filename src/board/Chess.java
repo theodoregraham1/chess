@@ -68,16 +68,8 @@ public class Chess {
         Position newPosition = piece.getIntPosition().translate(dx, dy);
 
         // Ensure there is not a piece in the way
-        boolean legal = true;
-        for (Piece p: board) {
-            if (p.getIntPosition().equals(newPosition)) {
-                legal = false;
-            }
-        }
-        if (!(legal)) {
-            System.out.println("There is a piece at that space");
-            return false;
-        }
+        boolean legal = isValidMove(piece, dx, dy);
+        if (!(legal)) return false;
 
         String oldPos = piece.getChessPosition();
         legal = piece.move(dx, dy);
@@ -88,8 +80,32 @@ public class Chess {
     }
 
     public boolean isValidMove(Piece pieceToMove, int dx, int dy) {
-        // TODO
-        return false;
+        Position[] intermediates = pieceToMove.intermediatesForMove(dx, dy);
+        boolean legal = true;
+
+        if (intermediates == null ) legal = false;
+        else if (intermediates.length != 0) {
+            // Check intermediate positions
+            for (Position pos : intermediates) {
+                for (Piece piece : board) {
+                    if (piece.getIntPosition().equals(pos)) {
+                        legal = false;
+                    }
+                }
+            }
+        }
+
+        if (!(legal)) return false;
+
+        // Check final position
+        Position finalPos = pieceToMove.getIntPosition().translate(dx, dy);
+        for (Piece piece: board) {
+            if (piece.getIntPosition().equals(finalPos) && (piece.getSide() == pieceToMove.getSide())) {
+                legal = false;
+            }
+        }
+
+        return legal;
     }
 
     public String toString() {

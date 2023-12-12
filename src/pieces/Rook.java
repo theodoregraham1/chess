@@ -28,11 +28,11 @@ public class Rook extends Piece {
 
             if (dy > 0) {
                 for (int i = 1; i < dy; i++) {
-                    intermediates[i] = position.translate(0, i);
+                    intermediates[i-1] = position.translate(0, i);
                 }
             } else {
                 for (int i = -1; i > dy; i--) {
-                    intermediates[i] = position.translate(0, i);
+                    intermediates[Math.abs(i)-1] = position.translate(0, i);
                 }
             }
 
