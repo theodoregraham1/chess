@@ -1,5 +1,6 @@
 package board;
 
+import pieces.Pawn;
 import pieces.Piece;
 
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ public class Chess {
             System.out.println("Position is not on the board");
             return false;
         }
+
         // Find the piece to move
         for (Piece p: board) {
             if (p.getIntPosition().equals(currentPosition)) {
@@ -80,6 +82,7 @@ public class Chess {
     public boolean isValidMove(Piece pieceToMove, int dx, int dy) {
         boolean legal = true;
         char symbol = pieceToMove.getSymbol();
+
         if (symbol != 'N' && symbol != ' ' && symbol != 'K') {
             Position[] intermediates = pieceToMove.intermediatesForMove(dx, dy);
 
@@ -97,7 +100,7 @@ public class Chess {
                     }
                 }
             }
-        } else {
+        } else if (symbol != ' ') {
             legal = pieceToMove.isValidMove(dx, dy);
             if (!(legal)) System.out.println("Move is illegal for the piece");
         }
@@ -110,6 +113,16 @@ public class Chess {
             if (piece.getIntPosition().equals(finalPos) && (piece.getSide() == pieceToMove.getSide())) {
                 System.out.println("ERROR: There is a piece in the way");
                 legal = false;
+            }
+        }
+
+        // Handle pawns taking
+        if (symbol == ' ') {
+            if (!(legal)) {
+                Pawn pawnToMove = (Pawn) pieceToMove;
+                legal = pawnToMove.isValidTake(dx, dy);
+            } else {
+                legal = pieceToMove.isValidMove(dx, dy);
             }
         }
 

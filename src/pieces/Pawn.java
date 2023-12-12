@@ -16,12 +16,16 @@ public class Pawn extends Piece {
 
     // Make the pawn move on a take and check it's valid
     public boolean take(int dx, int dy) {
-        if (((Math.abs(dx) != 1) || (dy != 1))   // Diagonal take
-            && !((position.y == 5) && white && (dx == 0))   // En passant for white
-            && !((position.y == 3) && !(white) && (dx == 0))) // En passant for black
+        if (!(isValidTake(dx, dy))) // En passant for black
             return false;
 
         return super.move(dx, dy);
+    }
+
+    public boolean isValidTake(int dx, int dy) {
+        return ((Math.abs(dx) == 1) && (Math.abs(dy) == 1))   // Diagonal take
+                || ((position.y == 5) && white && (dx == 0))   // En passant for white
+                || ((position.y == 3) && !(white) && (dx == 0)); // En passant for black
     }
 
     @Override
