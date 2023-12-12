@@ -22,6 +22,7 @@ public abstract class Piece {
 
         position.x += dx;
         position.y += dy;
+
         return true;
     }
 

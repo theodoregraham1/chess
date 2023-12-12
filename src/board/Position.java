@@ -1,6 +1,7 @@
 package board;
 
 public class Position {
+    // Coordinate 1-8 in both axes
     public int x;
     public int y;
 
@@ -22,5 +23,13 @@ public class Position {
 
     public Position translate(int dx, int dy) {
         return new Position(x + dx, y + dy);
+    }
+
+    public String toString() {
+        return String.format("(%d, %d)", x, y);
+    }
+
+    public boolean equals(Position pos2) {
+        return (pos2.x == this.x && pos2.y == this.y);
     }
 }

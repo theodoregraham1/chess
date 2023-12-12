@@ -45,18 +45,21 @@ public class Chess {
         Piece pieceToMove = null;
 
         // Ensure both positions are on the board
-        if (currentPosition == null || newPosition == null)
+        if (currentPosition == null || newPosition == null) {
+            System.out.println("Position is not on the board");
             return false;
-
+        }
         // Find the piece to move
         for (Piece p: board) {
             if (p.getIntPosition().equals(currentPosition)) {
                 pieceToMove = p;
+                System.out.println("Piece found");
             }
         }
 
         // Ensure there is a piece at the position that is getting moved
         if (pieceToMove == null) {
+            System.out.println("No piece at that position");
             return false;
         }
         return move(pieceToMove, newPosition.x - currentPosition.x, newPosition.y - currentPosition.y);
@@ -72,14 +75,16 @@ public class Chess {
                 legal = false;
             }
         }
-        if (!(legal))
+        if (!(legal)) {
+            System.out.println("There is a piece at that space");
             return false;
+        }
 
         String oldPos = piece.getChessPosition();
         legal = piece.move(dx, dy);
         if (legal)
             moves.add(new Move(piece, oldPos, piece.getChessPosition()));
-
+        System.out.println(moves.get(moves.size()-1));
         return legal;
     }
 
