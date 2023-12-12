@@ -14,6 +14,7 @@ public class Move {
     }
 
     public String toString() {
+        // TODO: Make this print better
         return piece.getClass().toString() + " moved from " + oldPosition + " to " + newPosition;
     }
 
