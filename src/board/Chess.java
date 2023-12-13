@@ -147,7 +147,23 @@ public class Chess {
         }
 
         StringBuilder output = new StringBuilder();
+
+        // Add headers
+        output.append("   ");
+        for (int i = 0; i < SIZE; i++) {
+            output.append((char)('a' + i)).append("  ");
+        }
+        output.append("\n");
+
+        output.append("---".repeat(SIZE+1));
+        output.append("\n");
+
+        // Add main body
+        int counter =0;
         for (String[] row: boardArray) {
+            output.append(8-counter).append("| ");
+            counter++;
+
             for (String space: row) {
                 if (space == null)
                     output.append("__");

@@ -55,8 +55,8 @@ public class Game {
             Position startPos = pieceToMove.getIntPosition();
 
             if (endPos != null) {
-                dx = startPos.x - endPos.x;
-                dy = startPos.y - endPos.y;
+                dx = endPos.x - startPos.x;
+                dy = endPos.y - startPos.y;
 
                 if (!(pieceToMove.isValidMove(dx, dy))) {
                     endPos = null;

@@ -37,7 +37,7 @@ public class Pawn extends Piece {
 
     @Override
     public boolean isValidMove(int dx, int dy) {
-        if ((dx != 0) || (dy != 1))
+        if ((dx != 0) || (Math.abs(dy) != 1))
             return false;
 
         return super.isValidMove(dx, dy);
