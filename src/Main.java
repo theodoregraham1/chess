@@ -1,11 +1,10 @@
 import board.Chess;
+import board.Game;
 
 public class Main {
     public static void main(String[] args) {
-        Chess chess = new Chess();
-        System.out.print(chess);
+        Game game = new Game();
 
-        chess.move("b8", "c6");
-        System.out.println(chess);
+        game.run();
     }
 }

@@ -4,17 +4,14 @@ import pieces.Pawn;
 import pieces.Piece;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Chess {
     private static final int SIZE = 8;
     private static final char[] STARTING_BACK_ROW = {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'};
 
-    private final ArrayList<Move> moves;
     private final ArrayList<Piece> board;
 
     public Chess() {
-        moves = new ArrayList<>();
         board = new ArrayList<>();
 
         // Make black and white back rows and pawns
@@ -41,18 +38,9 @@ public class Chess {
         }
     }
 
-    public static void main(String[] args) {
-        Chess chess = new Chess();
-        Scanner input = new Scanner(System.in);
 
-        while (true) {
-            String command = input.nextLine();
 
-            // TODO
-        }
-    }
-
-    public boolean move(String currentPos, String newPos) {
+    public Move move(String currentPos, String newPos) {
         Position currentPosition = Piece.toIntPosition(currentPos),
                 newPosition = Piece.toIntPosition(newPos);
         Piece pieceToMove = null;
@@ -60,7 +48,7 @@ public class Chess {
         // Ensure both positions are on the board
         if (currentPosition == null || newPosition == null) {
             System.out.println("Position is not on the board");
-            return false;
+            return null;
         }
 
         // Find the piece to move
@@ -73,29 +61,30 @@ public class Chess {
         // Ensure there is a piece at the position that is getting moved
         if (pieceToMove == null) {
             System.out.println("No piece at that position");
-            return false;
+            return null;
         }
+
         return move(pieceToMove, newPosition.x - currentPosition.x, newPosition.y - currentPosition.y);
     }
 
-    private boolean move(Piece piece, int dx, int dy) {
+    public Move move(Piece piece, int dx, int dy) {
         // Ensure there is not a piece in the way
         boolean legal = isValidMove(piece, dx, dy);
-        if (!(legal)) return false;
+        if (!(legal)) return null;
 
         String oldPos = piece.getChessPosition();
 
         // Handle pawns
+        // TODO: Add functionality for taking properly
         if (piece.getSymbol() == ' ' && Math.abs(dx) == 1)
             legal = piece.take(dx, dy);
         else
             legal = piece.move(dx, dy);
 
         if (legal) {
-            moves.add(new Move(piece, oldPos, false));
-            System.out.println(moves.get(moves.size()-1));
+            return new Move(piece, oldPos, false);
         }
-        return legal;
+        return null;
     }
 
     public boolean isValidMove(Piece pieceToMove, int dx, int dy) {
@@ -172,5 +161,14 @@ public class Chess {
         }
 
         return output.toString();
+    }
+
+    public Piece getPiece(String position) {
+        for (Piece piece: board) {
+            if (position.equalsIgnoreCase(piece.getChessPosition())) {
+                return piece;
+            }
+        }
+        return null;
     }
 }
