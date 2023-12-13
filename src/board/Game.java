@@ -23,7 +23,7 @@ public class Game {
             System.out.println(moves.get(moves.size()-1));
 
             System.out.println(chessBoard);
-            moves.add(turn(true, inputScanner));
+            moves.add(turn(false, inputScanner));
             System.out.println(moves.get(moves.size()-1));
         }
     }
