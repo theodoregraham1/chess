@@ -35,11 +35,11 @@ public class Game {
         } else {
             name = "Black";
         }
-
+        System.out.printf("%s's turn:%n", name);
         Piece pieceToMove = null;
 
         while (pieceToMove == null) {
-            System.out.printf("%s's turn: \n Enter start position:%n", name);
+            System.out.print("Enter start position: ");
             String startPos = inputScanner.nextLine();
 
             pieceToMove = chessBoard.getPiece(startPos);
@@ -50,7 +50,7 @@ public class Game {
         int dy = 0;
 
         while (endPos == null) {
-            System.out.println("Enter end position:");
+            System.out.print("Enter end position:");
             endPos = Piece.toIntPosition(inputScanner.next());
             Position startPos = pieceToMove.getIntPosition();
 
@@ -63,7 +63,12 @@ public class Game {
                 }
             }
         }
+        Move move = chessBoard.move(pieceToMove, dx, dy);
 
-        return chessBoard.move(pieceToMove, dx, dy);
+        while (move == null) {
+            System.out.println("Move invalid");
+            move = turn(white, inputScanner);
+        }
+        return move;
     }
 }

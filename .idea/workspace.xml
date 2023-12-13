@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3041472c-8355-45ed-88c4-91af65e3a2f4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/board/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/board/Chess.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/board/Chess.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/board/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/board/Game.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702390556635</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Start proper movement">
+      <created>1702476471044</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1702476471044</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -201,6 +205,7 @@
     <MESSAGE value="Fix taking with pawns in Chess" />
     <MESSAGE value="Refactor some stuff &#10;Start working on running game" />
     <MESSAGE value="Add TODOs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add TODOs" />
+    <MESSAGE value="Start proper movement" />
+    <option name="LAST_COMMIT_MESSAGE" value="Start proper movement" />
   </component>
 </project>
