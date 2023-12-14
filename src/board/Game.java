@@ -59,7 +59,6 @@ public class Game {
                 endPos = Piece.toIntPosition(inputText);
                 Position startPos = pieceToMove.getIntPosition();
 
-
                 // Check validity
                 if (endPos != null) {
                     dx = endPos.x - startPos.x;

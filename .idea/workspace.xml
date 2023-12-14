@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3041472c-8355-45ed-88c4-91af65e3a2f4" name="Changes" comment="Add TODOs to work on">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3041472c-8355-45ed-88c4-91af65e3a2f4" name="Changes" comment="Allow user to go back to choosing start position">
       <change beforePath="$PROJECT_DIR$/src/board/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/board/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pieces/Pawn.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/Pawn.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pieces/Piece.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/pieces/Piece.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -194,7 +192,21 @@
       <option name="project" value="LOCAL" />
       <updated>1702553004518</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Allow user to go back to choosing start position">
+      <created>1702553944621</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1702553944621</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Allow user to go back to choosing start position">
+      <created>1702553991948</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1702553991948</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -230,6 +242,7 @@
     <MESSAGE value="Start proper movement" />
     <MESSAGE value="Fix knight movement" />
     <MESSAGE value="Add TODOs to work on" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add TODOs to work on" />
+    <MESSAGE value="Allow user to go back to choosing start position" />
+    <option name="LAST_COMMIT_MESSAGE" value="Allow user to go back to choosing start position" />
   </component>
 </project>
