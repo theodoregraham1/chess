@@ -23,9 +23,9 @@ public class Pawn extends Piece {
     }
 
     public boolean isValidTake(int dx, int dy) {
-        return ((Math.abs(dx) == 1) && (Math.abs(dy) == 1))   // Diagonal take
-                || ((position.y == 5) && white && (dx == 0))   // En passant for white
-                || ((position.y == 3) && !(white) && (dx == 0)); // En passant for black
+        return (Math.abs(dx) == 1 && Math.abs(dy) == 1)   // Diagonal take
+                || (position.y == 5 && white && dx == 0)   // En passant for white
+                || (position.y == 3 && !white && dx == 0); // En passant for black
     }
 
     @Override
@@ -37,7 +37,6 @@ public class Pawn extends Piece {
 
     @Override
     public boolean isValidMove(int dx, int dy) {
-        // TODO: Allow double move on backline
         if (!(dx == 0
                 && ((dy == -1 && white) || (dy == 1 && !white)
                     || (dy == -2 && white && position.y == 7)
