@@ -37,6 +37,7 @@ public class Pawn extends Piece {
 
     @Override
     public boolean isValidMove(int dx, int dy) {
+        // TODO: Allow double move on backline
         if ((dx != 0) || (Math.abs(dy) != 1))
             return false;
 

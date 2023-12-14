@@ -74,15 +74,28 @@ public class Chess {
 
         String oldPos = piece.getChessPosition();
 
+        // Check final position
+        boolean isTake = false;
+        Piece takenPiece = null;
+        Position finalPos = piece.getIntPosition().translate(dx, dy);
+        for (Piece otherPiece: board) {
+            if (piece.getIntPosition().equals(finalPos) && (piece.getSide() != otherPiece.getSide())) {
+                isTake = true;
+                takenPiece = otherPiece;
+            }
+        }
+
         // Handle pawns
-        // TODO: Add functionality for taking properly
-        if (piece.getSymbol() == ' ' && Math.abs(dx) == 1)
+        if (piece.getSymbol() == ' ' && isTake)
             legal = piece.take(dx, dy);
         else
             legal = piece.move(dx, dy);
 
         if (legal) {
-            return new Move(piece, oldPos, false);
+            if (isTake) {
+                board.remove(takenPiece);
+            }
+            return new Move(piece, oldPos, isTake);
         }
         return null;
     }

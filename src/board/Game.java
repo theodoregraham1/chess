@@ -39,10 +39,12 @@ public class Game {
         Piece pieceToMove = null;
 
         while (pieceToMove == null) {
+            // TODO: Fix bug where this prints twice
             System.out.print("Enter start position: ");
             String startPos = inputScanner.nextLine();
 
             pieceToMove = chessBoard.getPiece(startPos);
+            // TODO: Ensure piece is on correct side
         }
 
         Position endPos = null;
@@ -53,12 +55,13 @@ public class Game {
             System.out.print("Enter end position:");
             endPos = Piece.toIntPosition(inputScanner.next());
             Position startPos = pieceToMove.getIntPosition();
-
+            // TODO: Allow user to go back to choosing start position
             if (endPos != null) {
                 dx = endPos.x - startPos.x;
                 dy = endPos.y - startPos.y;
 
                 if (!(pieceToMove.isValidMove(dx, dy))) {
+                    System.out.println("Move would not be valid");
                     endPos = null;
                 }
             }
