@@ -58,6 +58,9 @@ public abstract class Piece {
     public String getChessPosition() {
         return LETTERS[position.x-1] + Integer.toString(LETTERS.length - position.y+1);
     }
+    public boolean isWhite() {
+        return white;
+    }
 
     public static Piece getPiece(char symbol, boolean white, Position position) {
         if (symbol == 'K')

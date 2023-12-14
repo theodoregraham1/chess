@@ -16,7 +16,7 @@ public class Pawn extends Piece {
 
     // Make the pawn move on a take and check it's valid
     public boolean take(int dx, int dy) {
-        if (!(isValidTake(dx, dy))) // En passant for black
+        if (!(isValidTake(dx, dy)))
             return false;
 
         return super.move(dx, dy);
