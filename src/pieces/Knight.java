@@ -23,7 +23,8 @@ public class Knight extends Piece {
 
     @Override
     public boolean isValidMove(int dx, int dy) {
-        if ((Math.abs(dx) + Math.abs(dy)) != 3)
+        if ((Math.abs(dx) + Math.abs(dy)) != 3
+                || dx == 0 || dy == 0)
             return false;
 
         return super.isValidMove(dx, dy);
