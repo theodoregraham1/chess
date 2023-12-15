@@ -46,7 +46,7 @@ public class Game {
         int dy = 0;
 
         while (endPos == null) {
-            System.out.print("Enter end position:");
+            System.out.print("Enter end position: ");
             String inputText = inputScanner.next();
 
             if (inputText.equalsIgnoreCase("back")) {

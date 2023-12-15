@@ -74,26 +74,27 @@ public class Chess {
 
         // Check final position for take
         boolean isTake = false;
-        Piece takenPiece = null;
         Position finalPos = piece.getIntPosition().translate(dx, dy);
-        for (Piece otherPiece: board) {
-            if (piece.getIntPosition().equals(finalPos) && (piece.getSide() != otherPiece.getSide())) {
-                isTake = true;
-                takenPiece = otherPiece;
-            }
+
+        Piece takenPiece = this.getPiece(Piece.toChessPosition(finalPos));
+        if (takenPiece != null) {
+            if (takenPiece.getSide() != piece.getSide()) isTake = true;
+            else legal = false;
         }
 
-        // Handle pawns
-        if (piece.getSymbol() == ' ' && isTake)
-            legal = piece.take(dx, dy);
-        else
-            legal = piece.move(dx, dy);
-
         if (legal) {
-            if (isTake) {
-                board.remove(takenPiece);
+            // Handle pawns
+            if (piece.getSymbol() == ' ' && isTake)
+                legal = piece.take(dx, dy);
+            else
+                legal = piece.move(dx, dy);
+
+            if (legal) {
+                if (isTake) {
+                    board.remove(takenPiece);
+                }
+                return new Move(piece, oldPos, isTake);
             }
-            return new Move(piece, oldPos, isTake);
         }
         return null;
     }

@@ -78,6 +78,9 @@ public abstract class Piece {
 
         return null;
     }
+    public static String toChessPosition(Position pos) {
+        return LETTERS[pos.x-1] +Integer.toString(LETTERS.length - pos.y + 1);
+    }
     public static Position toIntPosition(String chessPosition) {
         char[] characters = chessPosition.toCharArray();
         Position position;
