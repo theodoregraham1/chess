@@ -69,7 +69,7 @@ public class Chess {
 
     public Move move(Piece piece, int dx, int dy) {
         // Ensure there is not a piece in the way
-        boolean legal = true;
+        boolean legal = isValidMove(piece, dx, dy);
         String oldPos = piece.getChessPosition();
 
         // Check final position for take

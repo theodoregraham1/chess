@@ -20,14 +20,14 @@ public class Queen extends Piece {
         if (!(isValidMove(dx, dy))) return null;
         Position[] intermediates;
 
-        if (dx == dy) {
+        if (Math.abs(dx) == Math.abs(dy)) {
             // Diagonal movement
 
             intermediates = new Position[Math.abs(dx)-1];
 
             if (dx > 0) {
                 for (int i = 1; i < dx; i++) {
-                    intermediates[i] = position.translate(i, i);
+                    intermediates[i-1] = position.translate(i, i);
                 }
             } else {
                 for (int i = -1; i > dx; i--) {
@@ -42,7 +42,7 @@ public class Queen extends Piece {
 
             if (dy > 0) {
                 for (int i = 1; i < dy; i++) {
-                    intermediates[i] = position.translate(0, i);
+                    intermediates[i-1] = position.translate(0, i);
                 }
             } else {
                 for (int i = -1; i > dy; i--) {
@@ -56,7 +56,7 @@ public class Queen extends Piece {
 
             if (dy > 0) {
                 for (int i = 1; i < dx; i++) {
-                    intermediates[i] = position.translate(i, 0);
+                    intermediates[i-1] = position.translate(i, 0);
                 }
             } else {
                 for (int i = -1; i > dx; i--) {
@@ -70,8 +70,8 @@ public class Queen extends Piece {
 
     @Override
     public boolean isValidMove(int dx, int dy) {
-        if (!((dx == dy) && (dx != 0))           // Diagonal condition
-                && !(((dx == 0) || (dy == 0))))      // Orthogonal condition
+        if (!(Math.abs(dx) == Math.abs(dy)          // Diagonal condition
+                || (dx == 0 || dy == 0)))      // Orthogonal condition
             return false;
 
         return super.isValidMove(dx, dy);

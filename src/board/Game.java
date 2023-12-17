@@ -17,6 +17,9 @@ public class Game {
     public void run() {
         Scanner inputScanner = new Scanner(System.in);
 
+        chessBoard.move("e2", "e4");
+        chessBoard.move("e7", "e5");
+
         while (true) {
             System.out.println(chessBoard);
             moves.add(turn(true, inputScanner));
