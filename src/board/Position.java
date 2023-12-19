@@ -1,5 +1,7 @@
 package board;
 
+import utils.Constants;
+
 public class Position {
     // Coordinate 1-8 in both axes
     public int x;
@@ -31,5 +33,9 @@ public class Position {
 
     public boolean equals(Position pos2) {
         return (pos2.x == this.x && pos2.y == this.y);
+    }
+
+    public String toChessPosition() {
+        return Constants.LETTERS[x-1] +Integer.toString(Constants.LETTERS.length - y + 1);
     }
 }

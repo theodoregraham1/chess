@@ -24,6 +24,7 @@ public class Game {
             System.out.println(chessBoard);
             moves.add(turn(true, inputScanner));
             System.out.println(moves.get(moves.size()-1));
+
             // TODO: Check checks
             System.out.println(chessBoard);
             moves.add(turn(false, inputScanner));

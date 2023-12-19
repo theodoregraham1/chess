@@ -37,7 +37,7 @@ public class Bishop extends Piece {
 
     @Override
     public boolean isValidMove(int dx, int dy) {
-        if ((dy != dx) || (dx == 0))
+        if (Math.abs(dy) != Math.abs(dx) || dx == 0)
             return false;
         return super.isValidMove(dx, dy);
     }

@@ -1,9 +1,9 @@
 package pieces;
 
 import board.Position;
+import utils.Constants;
 
 public abstract class Piece {
-    private static final Character[] LETTERS = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
 
     protected final boolean white;
     private final char symbol;
@@ -56,7 +56,7 @@ public abstract class Piece {
         return this.position;
     }
     public String getChessPosition() {
-        return LETTERS[position.x-1] + Integer.toString(LETTERS.length - position.y+1);
+        return Constants.LETTERS[position.x-1] + Integer.toString(Constants.SIZE - position.y+1);
     }
     public boolean isWhite() {
         return white;
@@ -78,9 +78,7 @@ public abstract class Piece {
 
         return null;
     }
-    public static String toChessPosition(Position pos) {
-        return LETTERS[pos.x-1] +Integer.toString(LETTERS.length - pos.y + 1);
-    }
+
     public static Position toIntPosition(String chessPosition) {
         char[] characters = chessPosition.toCharArray();
         Position position;
@@ -96,20 +94,12 @@ public abstract class Piece {
             return null;
         }
         position = new Position(
-                findInLetters(x)+1,
-                LETTERS.length - Integer.parseInt(Character.toString(y)) + 1);
+                Constants.findInLetters(x)+1,
+                Constants.SIZE - Integer.parseInt(Character.toString(y)) + 1);
 
         if (position.isValid())
             return position;
         return null;
     }
-    private static int findInLetters(char letter) {
-        int index = -1;
-        for (int i = 0; i < LETTERS.length; i++) {
-            if (letter == LETTERS[i])
-                index = i;
-        }
 
-        return index;
-    }
 }

@@ -2,29 +2,27 @@ package board;
 
 import pieces.Pawn;
 import pieces.Piece;
+import utils.Constants;
 
 import java.util.ArrayList;
 
 public class Chess {
-    private static final int SIZE = 8;
-    private static final char[] STARTING_BACK_ROW = {'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'};
-
     private final ArrayList<Piece> board;
 
     public Chess() {
         board = new ArrayList<>();
 
         // Make black and white back rows and pawns
-        for (int i = 1; i < SIZE+1; i++) {
+        for (int i = 1; i < Constants.SIZE+1; i++) {
             // Add back rows
             board.add(Piece.getPiece(
-                    STARTING_BACK_ROW[i-1],
+                    Constants.STARTING_BACK_ROW[i-1],
                     false,
                     new Position(i, 1)));
             board.add(Piece.getPiece(
-                    STARTING_BACK_ROW[i-1],
+                    Constants.STARTING_BACK_ROW[i-1],
                     true,
-                    new Position(i, SIZE)));
+                    new Position(i, Constants.SIZE)));
 
             // Add pawns
             board.add(Piece.getPiece(
@@ -34,7 +32,7 @@ public class Chess {
             board.add(Piece.getPiece(
                     ' ',
                     true,
-                    new Position(i, SIZE-1)));
+                    new Position(i, Constants.SIZE-1)));
         }
     }
 
@@ -69,18 +67,10 @@ public class Chess {
 
     public Move move(Piece piece, int dx, int dy) {
         // Ensure there is not a piece in the way
-        boolean legal = isValidMove(piece, dx, dy);
+        boolean[] moveFlags = isValidMove(piece, dx, dy);
+        boolean legal = moveFlags[0], isTake = moveFlags[1];
         String oldPos = piece.getChessPosition();
-
-        // Check final position for take
-        boolean isTake = false;
-        Position finalPos = piece.getIntPosition().translate(dx, dy);
-
-        Piece takenPiece = this.getPiece(Piece.toChessPosition(finalPos));
-        if (takenPiece != null) {
-            if (takenPiece.getSide() != piece.getSide()) isTake = true;
-            else legal = false;
-        }
+        String newPos = piece.getIntPosition().translate(dx, dy).toChessPosition();
 
         if (legal) {
             // Handle pawns
@@ -91,7 +81,7 @@ public class Chess {
 
             if (legal) {
                 if (isTake) {
-                    board.remove(takenPiece);
+                    board.remove(getPiece(newPos));
                 }
                 return new Move(piece, oldPos, isTake);
             }
@@ -99,33 +89,36 @@ public class Chess {
         return null;
     }
 
-    public Move isValidMove(Piece pieceToMove, int dx, int dy) {
-        boolean legal = true, take = false;
+    public boolean[] isValidMove(Piece pieceToMove, int dx, int dy) {
+        // Returns an array with the legality of the move at [0] and if it is a take at [1]
+        boolean[] output = {false, false};
+
+        Move moveOutput = null;
         char symbol = pieceToMove.getSymbol();
 
         if (symbol != 'N' && symbol != ' ' && symbol != 'K') {
             Position[] intermediates = pieceToMove.intermediatesForMove(dx, dy);
 
             if (intermediates == null) {
-                legal = false;
+                output[0] = false;
                 System.out.println("ERROR: Move is invalid for the piece");
             } else  {
                 // Check intermediate positions
                 for (Position pos : intermediates) {
                     for (Piece piece : board) {
                         if (piece.getIntPosition().equals(pos)) {
-                            legal = false;
+                            output[0] = false;
                             System.out.println("ERROR: There is a piece in the way");
                         }
                     }
                 }
             }
         } else if (symbol != ' ') {
-            legal = pieceToMove.isValidMove(dx, dy);
-            if (!(legal)) System.out.println("Move is illegal for the piece");
+            output[0] = pieceToMove.isValidMove(dx, dy);
+            if (!(output[0])) System.out.println("Move is illegal for the piece");
         }
 
-        if (!(legal)) return null;
+        if (!(output[0])) return output;
 
         // Check final position
         Position finalPos = pieceToMove.getIntPosition().translate(dx, dy);
@@ -133,28 +126,28 @@ public class Chess {
             if (piece.getIntPosition().equals(finalPos) && (piece.getSide() == pieceToMove.getSide())) {
                 if (piece.getSide() == pieceToMove.getSide()) {
                     System.out.println("ERROR: There is a piece in the way");
-                    legal = false;
+                    output[0] = false;
                 } else {
-                    take = true;
+                    output[1] = true;
                 }
             }
         }
 
         // Handle pawns taking
-        if (symbol == ' ') {
+        if (symbol == ' ' && output[0]) {
             Pawn pawnToMove = (Pawn) pieceToMove;
 
-            if (take)
-                legal = pawnToMove.isValidTake(dx, dy);
+            if (output[1])
+                output[0] = pawnToMove.isValidTake(dx, dy);
             else
-                legal = pawnToMove.isValidMove(dx, dy);
+                output[0] = pawnToMove.isValidMove(dx, dy);
         }
 
-        return new Move;
+        return output;
     }
 
     public String toString() {
-        String[][] boardArray = new String[SIZE][SIZE];
+        String[][] boardArray = new String[Constants.SIZE][Constants.SIZE];
 
         for (Piece piece: board) {
             Position pos = piece.getIntPosition();
@@ -166,12 +159,12 @@ public class Chess {
 
         // Add headers
         output.append("   ");
-        for (int i = 0; i < SIZE; i++) {
+        for (int i = 0; i < Constants.SIZE; i++) {
             output.append((char)('a' + i)).append("  ");
         }
         output.append("\n");
 
-        output.append("---".repeat(SIZE+1));
+        output.append("---".repeat(Constants.SIZE+1));
         output.append("\n");
 
         // Add main body
