@@ -1,4 +1,3 @@
-import board.Chess;
 import board.Game;
 
 public class Main {

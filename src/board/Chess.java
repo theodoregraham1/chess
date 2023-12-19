@@ -36,8 +36,6 @@ public class Chess {
         }
     }
 
-
-
     public Move move(String currentPos, String newPos) {
         Position currentPosition = Piece.toIntPosition(currentPos),
                 newPosition = Piece.toIntPosition(newPos);
