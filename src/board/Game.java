@@ -24,7 +24,7 @@ public class Game {
             System.out.println(chessBoard);
             moves.add(turn(true, inputScanner));
             System.out.println(moves.get(moves.size()-1));
-
+            // TODO: Check checks
             System.out.println(chessBoard);
             moves.add(turn(false, inputScanner));
             System.out.println(moves.get(moves.size()-1));
@@ -66,11 +66,6 @@ public class Game {
                 if (endPos != null) {
                     dx = endPos.x - startPos.x;
                     dy = endPos.y - startPos.y;
-
-                    if (!(pieceToMove.isValidMove(dx, dy))) {
-                        System.out.println("Move invalid");
-                        endPos = null;
-                    }
                 }
             }
         }
@@ -97,6 +92,8 @@ public class Game {
                     pieceToMove = null;
                 }
             }
+
+            if (pieceToMove == null) System.out.println("There is no piece at that position");
         }
         return pieceToMove;
     }

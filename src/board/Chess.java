@@ -99,8 +99,8 @@ public class Chess {
         return null;
     }
 
-    public boolean isValidMove(Piece pieceToMove, int dx, int dy) {
-        boolean legal = true;
+    public Move isValidMove(Piece pieceToMove, int dx, int dy) {
+        boolean legal = true, take = false;
         char symbol = pieceToMove.getSymbol();
 
         if (symbol != 'N' && symbol != ' ' && symbol != 'K') {
@@ -125,28 +125,32 @@ public class Chess {
             if (!(legal)) System.out.println("Move is illegal for the piece");
         }
 
-        if (!(legal)) return false;
+        if (!(legal)) return null;
 
         // Check final position
         Position finalPos = pieceToMove.getIntPosition().translate(dx, dy);
         for (Piece piece: board) {
             if (piece.getIntPosition().equals(finalPos) && (piece.getSide() == pieceToMove.getSide())) {
-                System.out.println("ERROR: There is a piece in the way");
-                legal = false;
+                if (piece.getSide() == pieceToMove.getSide()) {
+                    System.out.println("ERROR: There is a piece in the way");
+                    legal = false;
+                } else {
+                    take = true;
+                }
             }
         }
 
         // Handle pawns taking
         if (symbol == ' ') {
-            if (!(legal)) {
-                Pawn pawnToMove = (Pawn) pieceToMove;
+            Pawn pawnToMove = (Pawn) pieceToMove;
+
+            if (take)
                 legal = pawnToMove.isValidTake(dx, dy);
-            } else {
-                legal = pieceToMove.isValidMove(dx, dy);
-            }
+            else
+                legal = pawnToMove.isValidMove(dx, dy);
         }
 
-        return legal;
+        return new Move;
     }
 
     public String toString() {
