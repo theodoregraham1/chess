@@ -89,7 +89,7 @@ public class Chess {
 
     public boolean[] isValidMove(Piece pieceToMove, int dx, int dy) {
         // Returns an array with the legality of the move at [0] and if it is a take at [1]
-        boolean[] output = {false, false};
+        boolean[] output = {true, false};
 
         Move moveOutput = null;
         char symbol = pieceToMove.getSymbol();
