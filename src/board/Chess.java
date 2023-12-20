@@ -1,6 +1,7 @@
 package board;
 
 import pieces.Pawn;
+import pieces.King;
 import pieces.Piece;
 import utils.Constants;
 
@@ -142,6 +143,75 @@ public class Chess {
         }
 
         return output;
+    }
+
+    public char inCheck() {
+        boolean whiteCheck = false, blackCheck = false;
+        King whiteKing = null, blackKing = null;
+
+        // Get kings
+        boolean foundWhite = false, foundBlack = false;
+        int i = 0;
+        Piece piece;
+
+        while ((!foundWhite || !foundBlack) && i < board.size()) {
+            piece = board.get(i);
+
+            if (piece.getSymbol() == 'K') {
+                if (piece.isWhite()) {
+                    whiteKing = (King) piece;
+                    foundWhite = true;
+                } else {
+                    blackKing = (King) piece;
+                    foundBlack = true;
+                }
+            }
+
+            i ++;
+        }
+
+        if (!foundWhite || !foundBlack) {
+            return ' ';
+        }
+
+        // Find if other pieces can hit the king
+        int dx, dy;
+
+        Position blackKingPos = blackKing.getIntPosition();
+        Position whiteKingPos = whiteKing.getIntPosition();
+        for (Piece piece1: board) {
+            if (piece1.getSymbol() != 'K') {
+                Position position1 = piece1.getIntPosition();
+
+                if (piece1.isWhite()) {
+                    // Can black pieces hit the white king
+                    dx = blackKingPos.x - position1.x;
+                    dy = blackKingPos.y - position1.y;
+
+                    if (isValidMove(piece1, dx, dy)[0]) {
+                        blackCheck = true;
+                    }
+                } else {
+                    // Can white pieces hit the black king
+                    dx = whiteKingPos.x - position1.x;
+                    dy = whiteKingPos.y - position1.y;
+
+                    if (isValidMove(piece1, dx, dy)[0]) {
+                        whiteCheck = true;
+                    }
+                }
+            }
+        }
+
+        if (whiteCheck) {
+            if (blackCheck) {
+                return 'p';     // Both are in check
+            }
+            return 'w';     // White is in check
+        } if (blackCheck) {
+            return 'b';     // Black is in check
+        }
+        return 'n';     // Neither are in check
     }
 
     public String toString() {
