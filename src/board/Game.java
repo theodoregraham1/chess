@@ -23,12 +23,15 @@ public class Game {
         while (true) {
             System.out.println(chessBoard);
             moves.add(turn(true, inputScanner));
-            System.out.println(moves.get(moves.size()-1));
 
-            // TODO: Check checks
-            System.out.println(chessBoard);
-            moves.add(turn(false, inputScanner));
             System.out.println(moves.get(moves.size()-1));
+            displayCheck();
+            System.out.println(chessBoard);
+
+            moves.add(turn(false, inputScanner));
+
+            System.out.println(moves.get(moves.size()-1));
+            displayCheck();
         }
     }
 
@@ -77,6 +80,17 @@ public class Game {
             move = turn(white, inputScanner);
         }
         return move;
+    }
+
+    public char displayCheck() {
+        char response = chessBoard.inCheck();
+        if (response == 'w' || response == 'p') {
+            System.out.println("White is in check");
+        }
+        if (response == 'b' || response == 'p') {
+            System.out.println("Black is in check");;
+        }
+        return response;
     }
 
     private Piece getPieceFromInput(boolean white, Scanner inputScanner) {
