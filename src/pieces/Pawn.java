@@ -23,9 +23,11 @@ public class Pawn extends Piece {
     }
 
     public boolean isValidTake(int dx, int dy) {
-        return (Math.abs(dx) == 1 && Math.abs(dy) == 1)   // Diagonal take
+        return (Math.abs(dx) == 1 && Math.abs(dy) == 1);   // Diagonal take
+                /*
                 || (position.y == 5 && white && dx == 0)   // En passant for white
                 || (position.y == 3 && !white && dx == 0); // En passant for black
+                 */
     }
 
     @Override
